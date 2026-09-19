@@ -3,40 +3,363 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FENG System - Smart Size Guide (Academic Project)</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; background: #0f0f0f; color: #fff; }
-        .disclaimer { background: #d9534f; color: #fff; text-align: center; padding: 10px; font-weight: bold; }
-        .container { max-width: 600px; margin: 40px auto; padding: 20px; background: #1a1a1a; border-radius: 8px; }
-        .btn { display: block; width: 100%; padding: 15px; background: #fff; color: #000; text-align: center; font-weight: bold; text-decoration: none; border-radius: 4px; margin-top: 20px; box-sizing: border-box; }
-    </style>
-    <!-- GA4 Tracking Code -->
+    <title>FENG System - Official Size Guide & Collection Preview</title>
+    
+    <!-- Google Tag (GA4) - Thay 'G-XXXXXXXXXX' bằng Measurement ID GA4 của nhóm bạn -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
+
       gtag('config', 'G-XXXXXXXXXX');
     </script>
+
+    <style>
+        /* CSS RESET & DESIGN SYSTEM OF FENG */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ACADEMIC DISCLAIMER BANNER */
+        .academic-disclaimer {
+            background-color: #d9534f;
+            color: #ffffff;
+            text-align: center;
+            padding: 12px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* NAVIGATION HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 40px;
+            border-bottom: 1px solid #1a1a1a;
+            background-color: #000000;
+        }
+
+        .brand-logo {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: #888888;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            margin-left: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        /* MAIN LAYOUT */
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero-title {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .hero-subtitle {
+            color: #888888;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* SMART SIZE GUIDE WIDGET */
+        .widget-card {
+            background-color: #0a0a0a;
+            border: 1px solid #222222;
+            border-radius: 4px;
+            padding: 35px;
+            margin-bottom: 40px;
+        }
+
+        .widget-title {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border-left: 3px solid #ffffff;
+            padding-left: 12px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .form-grid { grid-template-columns: 1fr; }
+            header { padding: 20px; }
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaaaaa;
+            margin-bottom: 8px;
+        }
+
+        .input-group input {
+            background-color: #141414;
+            border: 1px solid #333333;
+            color: #ffffff;
+            padding: 12px 15px;
+            font-size: 14px;
+            border-radius: 2px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #ffffff;
+        }
+
+        .btn-calc {
+            width: 100%;
+            background-color: #222222;
+            color: #ffffff;
+            border: 1px solid #444444;
+            padding: 14px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-calc:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* RESULT BOX */
+        .result-box {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #111111;
+            border: 1px solid #333333;
+            text-align: center;
+        }
+
+        .result-box.active {
+            display: block;
+        }
+
+        .result-size {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-top: 5px;
+        }
+
+        /* OUTBOUND CTA SECTION */
+        .cta-box {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            width: 100%;
+            max-width: 400px;
+            background-color: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            padding: 18px 30px;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 2px;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            background-color: #cccccc;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1a1a1a;
+            color: #555555;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 <body>
-    <div class="disclaimer">
-         THÔNG BÁO HỌC THUẬT: Đây là trang Landing Page Prototype phục vụ mục đích bài tập nghiên cứu (EC204) – KHÔNG PHẢI trang chính thức của thương hiệu FENG System.
+
+    <!-- 1. ACADEMIC DISCLAIMER MANDATORY -->
+    <div class="academic-disclaimer">
+        ⚠️ BÀI TẬP HỌC THUẬT – KHÔNG PHẢI TRANG CHÍNH THỨC CỦA THƯƠNG HIỆU FENG SYSTEM
     </div>
-    <div class="container">
-        <h1>FENG SYSTEM</h1>
-        <p>Interactive Size Recommendation & Lookbook Prototype</p>
-        <hr style="border-color: #333;">
-        <h3>Khám phá BST & Tra cứu Size</h3>
-        <p>Nhấp vào nút bên dưới để chuyển hướng sang trang chủ chính thức với tham số UTM:</p>
-        <a id="cta-button" class="btn" href="https://fengofficiel.com/collections/all?utm_source=blogger&utm_medium=blog_backlink&utm_campaign=portfolio_assignment_ec204" target="_blank">
-            KHÁM PHÁ NGAY (CTA TEST)
-        </a>
+
+    <!-- 2. HEADER BRANDING -->
+    <header>
+        <a href="#" class="brand-logo">FENG</a>
+        <nav>
+            <a href="#">HOMME</a>
+            <a href="#">FEMME</a>
+            <a href="#">ARCHIVE</a>
+        </nav>
+    </header>
+
+    <!-- 3. MAIN CONTENT CONTAINER -->
+    <div class="main-container">
+        
+        <div class="hero-section">
+            <h1 class="hero-title">NEO-SARTORIAL SIZE GUIDE</h1>
+            <p class="hero-subtitle">Công cụ tính toán Kích cỡ & Phom dáng chuẩn xác cho BST FENG System</p>
+        </div>
+
+        <!-- 4. INTERACTIVE SIZE CALCULATOR -->
+        <div class="widget-card">
+            <div class="widget-title">Gợi Ý Kích Cỡ Thông Minh</div>
+            
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="height">Chiều cao (CM)</label>
+                    <input type="number" id="height" placeholder="Ví dụ: 175" required>
+                </div>
+                <div class="input-group">
+                    <label for="weight">Cân nặng (KG)</label>
+                    <input type="number" id="weight" placeholder="Ví dụ: 68" required>
+                </div>
+            </div>
+
+            <button type="button" class="btn-calc" id="btn-calculate">TÍNH SIZE CỦA BẠN</button>
+
+            <div class="result-box" id="result-container">
+                <span style="font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px;">Kích cỡ đề xuất cho bạn:</span>
+                <div class="result-size" id="recommended-size-text">SIZE M</div>
+            </div>
+        </div>
+
+        <!-- 5. OUTBOUND CTA WITH UTM PARAMETERS -->
+        <div class="cta-box">
+            <p style="font-size: 13px; color: #aaaaaa; margin-bottom: 20px; letter-spacing: 0.5px;">
+                Xác nhận kích cỡ và khám phá toàn bộ sản phẩm trên Cửa hàng Chính thức:
+            </p>
+            <a id="utm-cta-link" 
+               class="btn-cta" 
+               href="https://fengofficiel.com/collections/all?utm_source=blogger&utm_medium=blog_backlink&utm_campaign=portfolio_assignment_ec204" 
+               target="_blank">
+                XEM BỘ SƯU TẬP CHÍNH THỨC
+            </a>
+        </div>
+
     </div>
+
+    <!-- 6. FOOTER -->
+    <footer>
+        © 2026 Academic Research Project — EC204 E-Commerce Audit Portfolio
+    </footer>
+
+    <!-- 7. EVENT TRACKING LOGIC (JAVASCRIPT) -->
     <script>
-        document.getElementById('cta-button').addEventListener('click', function() {
+        // Xử lý sự kiện Tính Size & Gửi Event về GA4
+        document.getElementById('btn-calculate').addEventListener('click', function() {
+            const height = parseFloat(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const resultContainer = document.getElementById('result-container');
+            const sizeText = document.getElementById('recommended-size-text');
+
+            if (!height || !weight) {
+                alert('Vui lòng điền đầy đủ thông tin Chiều cao và Cân nặng!');
+                return;
+            }
+
+            let size = 'SIZE M';
+            if (height < 168 || weight < 58) {
+                size = 'SIZE S';
+            } else if (height > 178 || weight > 74) {
+                size = 'SIZE L';
+            }
+
+            sizeText.innerText = size;
+            resultContainer.classList.add('active');
+
+            // Gửi GA4 Custom Event: calculate_size
             if (typeof gtag === 'function') {
-                gtag('event', 'click_size_guide_cta', { 'destination_url': this.href });
+                gtag('event', 'calculate_size', {
+                    'event_category': 'Engagement',
+                    'user_height': height,
+                    'user_weight': weight,
+                    'recommended_size': size
+                });
+                console.log('GA4 Event Tracked: calculate_size');
+            }
+        });
+
+        // Xử lý sự kiện Click CTA Chuyển hướng & Gửi Event về GA4
+        document.getElementById('utm-cta-link').addEventListener('click', function(e) {
+            // Gửi GA4 Custom Event: click_size_guide_cta
+            if (typeof gtag === 'function') {
+                gtag('event', 'click_size_guide_cta', {
+                    'event_category': 'Outbound Link',
+                    'event_label': 'FENG Official Collection Link',
+                    'destination_url': this.href
+                });
+                console.log('GA4 Event Tracked: click_size_guide_cta');
             }
         });
     </script>
