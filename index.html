@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FENG System - Official Size Guide & Collection Preview</title>
     
-    <!-- Google Tag (GA4) - Thay 'G-XXXXXXXXXX' bằng Measurement ID GA4 của nhóm bạn -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google Tag (gtag.js) - GA4 ID của nhóm: G-X6TSHBDRKF -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X6TSHBDRKF"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-XXXXXXXXXX');
+      gtag('config', 'G-X6TSHBDRKF');
     </script>
 
     <style>
@@ -250,16 +250,16 @@
 
     <!-- 1. ACADEMIC DISCLAIMER MANDATORY -->
     <div class="academic-disclaimer">
-        ⚠️ BÀI TẬP HỌC THUẬT – KHÔNG PHẢI TRANG CHÍNH THỨC CỦA THƯƠNG HIỆU FENG SYSTEM
+         BÀI TẬP HỌC THUẬT – KHÔNG PHẢI TRANG CHÍNH THỨC CỦA THƯƠNG HIỆU FENG SYSTEM
     </div>
 
-    <!-- 2. HEADER BRANDING -->
+    <!-- 2. HEADER BRANDING WITH LIVE NAVIGATION LINKS -->
     <header>
-        <a href="#" class="brand-logo">FENG</a>
+        <a href="https://fengofficiel.com/?utm_source=blogger&utm_medium=blog_backlink&utm_campaign=portfolio_assignment_ec204" target="_blank" class="brand-logo track-nav" data-category="Home">FENG</a>
         <nav>
-            <a href="#">HOMME</a>
-            <a href="#">FEMME</a>
-            <a href="#">ARCHIVE</a>
+            <a href="https://fengofficiel.com/collections/homme?utm_source=blogger&utm_medium=blog_backlink&utm_campaign=portfolio_assignment_ec204" target="_blank" class="track-nav" data-category="Homme">HOMME</a>
+            <a href="https://fengofficiel.com/collections/femme?utm_source=blogger&utm_medium=blog_backlink&utm_campaign=portfolio_assignment_ec204" target="_blank" class="track-nav" data-category="Femme">FEMME</a>
+            <a href="https://fengofficiel.com/collections/archive?utm_source=blogger&utm_medium=blog_backlink&utm_campaign=portfolio_assignment_ec204" target="_blank" class="track-nav" data-category="Archive">ARCHIVE</a>
         </nav>
     </header>
 
@@ -268,7 +268,7 @@
         
         <div class="hero-section">
             <h1 class="hero-title">NEO-SARTORIAL SIZE GUIDE</h1>
-            <p class="hero-subtitle">Công cụ tính toán Kích cỡ & Phom dáng chuẩn xác cho BST FENG System</p>
+            <p class="hero-subtitle">Công cụ tính toán Kích cỡ & Form dáng chuẩn xác cho các thiết kế của Feng System</p>
         </div>
 
         <!-- 4. INTERACTIVE SIZE CALCULATOR -->
@@ -316,6 +316,23 @@
 
     <!-- 7. EVENT TRACKING LOGIC (JAVASCRIPT) -->
     <script>
+        // Xử lý chuyển hướng & bắn GA4 Event khi nhấp vào Menu
+        document.querySelectorAll('.track-nav').forEach(function(element) {
+            element.addEventListener('click', function(e) {
+                const navCategory = this.getAttribute('data-category');
+                const targetUrl = this.href;
+
+                if (typeof gtag === 'function') {
+                    gtag('event', 'click_nav_menu', {
+                        'event_category': 'Navigation',
+                        'event_label': navCategory,
+                        'destination_url': targetUrl
+                    });
+                    console.log('GA4 Tracked Nav Click: ' + navCategory);
+                }
+            });
+        });
+
         // Xử lý sự kiện Tính Size & Gửi Event về GA4
         document.getElementById('btn-calculate').addEventListener('click', function() {
             const height = parseFloat(document.getElementById('height').value);
@@ -352,7 +369,6 @@
 
         // Xử lý sự kiện Click CTA Chuyển hướng & Gửi Event về GA4
         document.getElementById('utm-cta-link').addEventListener('click', function(e) {
-            // Gửi GA4 Custom Event: click_size_guide_cta
             if (typeof gtag === 'function') {
                 gtag('event', 'click_size_guide_cta', {
                     'event_category': 'Outbound Link',
